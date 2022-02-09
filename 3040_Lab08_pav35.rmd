@@ -1,0 +1,227 @@
+---
+title: 'Lab #8'
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+ 
+ 
+```{r setup, include=FALSE, error= TRUE}
+
+knitr::opts_chunk$set(echo = TRUE, dpi =200, fig.cap = NULL, message=FALSE, warning=FALSE)
+library(stringr)
+library(ggplot2)
+library(openintro) # You need to install this package
+
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+  
+
+\newpage
+
+Problem 1: Write a function called **absolute.differences**. The input for the function will be a single vector. The output of the vector should be the absolute value of the difference of consecutive values from the given vector. ( You may not use the $diff()$ function.) Check the functionality of your function on the vector **check**
+
+```{r}
+check <- c(1, 2, 0, -3, 1, 6, 12, 5, -3, 6, -4)
+# Show your work here
+
+absolute.differences = function(x){
+  abs_diff = c()
+ 
+   for (index in (1:length(x)-1)){
+   
+     diff = x[index]-x[index+1]
+     
+     abs_diff = c(abs_diff, abs(diff))
+     }
+ 
+   return(abs_diff)
+}
+
+absolute.differences(check)
+```
+
+
+
+
+\newpage
+
+Problem 2: Write a function that takes a single argument as its input. The input for the function will be a data frame with three columns. The function should return a vector containing a subset of the values from the first variable of the given data frame. The returned values should correspond to rows where the value in the second column is equal to the value in the third column. The function should be called **sameness**.
+Check the functionality of your function using the **dewpoint** dataframe in the DAAG package.
+
+```{r, error=TRUE}
+# Show your work here
+sameness = function(df){
+  twothree = df[,c(1)][(df[,c(2)] == df[,c(3)])]
+  return(twothree)
+}
+
+sameness(dewpoint)
+
+```
+\newpage
+
+Problem 3:	Create a function called **average.it**. It should take one argument $x$. $x$ will be a numeric vector. The function should compute the average of the values in the $x$. The function should return the average. Remember, not all vectors will have the same length. Your function should be able to account for that fact. (You can not use the sum/mean/cumsum or any existing function that performs this operation in a single step.) Its default should be a zero vector. Check your work with the vector 1:20
+
+```{r, error= TRUE}
+# Show your work here
+average.it = function(x, default = c(0)){
+  total = 0
+  for (index in (1:length(x))){
+    total = x[index] + total
+  }
+  average = total/length(x)
+  return(average)
+}
+
+average.it(c(1:20))
+
+```
+
+
+\newpage
+
+Problem 4: Examine the following code. It repeats itself with minor modifications.  Turn the repetitious code into a function. Name the function  my.function. The function should not replace ALL of the following code. If done properly, the following code can be replace with my.function and a for-loop that executes each iteration below. 
+
+```{r }
+
+total.areas <- vector(length = 7)
+
+
+# First iteration
+number.of.intervals <- 2
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[1] <- total.area 
+
+# Next iteration
+number.of.intervals <- 3
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[2] <- total.area
+
+# Next iteration
+number.of.intervals <- 4
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[3] <- total.area
+
+# Next iteration
+number.of.intervals <- 5
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[4] <- total.area
+
+# Next iteration
+number.of.intervals <- 6
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[5] <- total.area
+
+# Next iteration
+number.of.intervals <- 7
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[6] <- total.area
+
+# Next iteration
+number.of.intervals <- 8
+sequence.of.numbers <- seq( from = 0, to = 1, length.out = number.of.intervals + 1 )
+sequence.of.numbers <- sequence.of.numbers[ -(number.of.intervals + 1) ]
+difference.of.first.two.values <- sequence.of.numbers[2] - sequence.of.numbers[1]
+heights.for.dchisq <- dchisq( sequence.of.numbers , df = 2)
+areas <- heights.for.dchisq * difference.of.first.two.values
+total.area <- 0
+for(i in areas){
+  total.area = total.area +i
+}
+
+total.areas[7] <- total.area
+
+
+total.areas
+# Show your work here
+
+my.function = function(df, times){
+  dq_value = c()
+  for (time in length(times)){
+    value = dchisq(time,df)
+    dq_value = c(dq_value,value)
+  }
+  return(dq_value)
+}
+
+
+```
+I think that here they are using a function called dchisq to find the chisq of a dataframe, I believe that this functions allows you to choose what centering you prefer. So the for loops iterates through a centering of 2 to 8 in the original code. I tried coding that with a for loop in my fucntion.
+

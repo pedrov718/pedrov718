@@ -1,0 +1,129 @@
+---
+title: "Homework #09"
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 200, fig.cap = NULL, message = FALSE, warning=FALSE, error = TRUE)
+library(stringr)
+library(ggplot2)
+library(tibble)
+library(lubridate)
+library(openintro) 
+library(dplyr)
+load("Lab09.RDATA")
+ekosol <- TRUE
+```
+
+Things to complete:
+
+a.  All examples completed by the TAs
+b.  All of the problems assigned to you
+
+Each problem should :
+
+a.  have made use of only functions listed in lab, or previous labs.
+b.  have each problem on a different page.
+c.  have any computed values displayed either inline or explicitly at the end of a code chunk.
+d.  not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+
+Thing to turn in:
+
+a.  One PDF (produced from a knitted word document.)
+
+**Instructions:**
+
+1.  Recreate the given graphs.
+2.  Use either the dataframe indicated in the title or create the dataframe if there is no dataframe given in the title.
+3.  All individual plotted points have integer values. (If it looks like it is close to (2,1), then the plotted point is at (2,1) )
+4.  If the size of a point appears to be different from the default, the size does not need to be matched exactly. Relative size is all that should be maintained. 5.The only colors that will be specifically set/specified are: "black", "blue", "orange", "red", "grey50". Any other color is a natural selection of an aesthetic mapping.
+5.  Give each graph a 'more descriptive' title
+
+\newpage
+
+Problem 1: Create a single **patents** dataframe from **patents.dates** and **patents.names**. Keep all the information regarding patent numbers that occur in both data frames. Then create the following graph
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+patents = inner_join(x = patents.dates, y = patents.names)
+
+patents['year'] = year(mdy(patents$`Filing Date`))
+
+
+
+ggplot(data = patents)+ geom_bar(mapping = aes(x = patents$year, fill = patents$Designer), stat = 'count', position = 'dodge2') + labs( title = 'Patents Data', x = " Filing Date", y = 'count')
+```
+
+
+\newpage
+
+Problem 2: Use the **film** dataframes to recreate the following graph. When a possibility exists to use a **dplyr** function, use the **dplyr** function.
+```{r echo = ekosol, fig.height = 4, fig.width = 6}
+film = inner_join(x = film.manufacturer, y = film.specs, by = "Make", "Process")
+
+
+View(film)
+
+ggplot(data = film ) + geom_bubble(mapping = aes(x = film$Process, y = film$Make)) 
+
+```
+
+
+\newpage
+
+Problem 3: Use the **babynames** dataframe to recreate the following graph. When a possibility exists to use a **dplyr** function, use the **dplyr** function. You may need to install the **babynames** package. For each year, the name with the highest number of occurrences was determined. The graph depicts the highest number of occurrences of any name for a year versus the year.
+
+```{r echo = ekosol, fig.height = 4, fig.width = 6}
+# Show your work here
+
+library(babynames)
+View(babynames)
+
+ggplot(data = babynames) + geom_smooth(mapping = aes(x = babynames$year, y = babynames$n, fill = babynames$sex), se = TRUE, linetype = 1) + labs( title = "Baby Data", x = "Year", y = "Maximum")
+
+
+```
+
+\newpage
+
+Problem 4: Use the **babynames** dataframe to recreate the following graph. When a possibility exists to use a **dplyr** function, use the **dplyr** function. You may need to install the **babynames** package. It describes the number of individuals names "Fred" or "Erin" broken down by **sex**.
+
+```{r echo = ekosol, fig.height = 4, fig.width = 6}
+# Show your work here
+
+(babynames$name['Erin' == True]
+
+mutate(babynames, new = (babynames$name == 'Erin'))
+
+
+```
+
+\newpage
+
+Problem 5: Join together **kodak.discontinued** and **kodak.released** dataframes. Make sure not to duplicate records. The result should be called **kodak**. Keep all information that is not a duplicate. Look at "New York World's Fair Baby BROWNIE Camera".
+
+```{r echo = ekosol, fig.height = 4, fig.width = 6}
+# Show your work here
+
+kodak = full_join(kodak.discontinued, kodak.released)
+
+# Display the first 10 rows of **kodak**
+
+
+
+```
+
+\newpage
+
+Problem 6: (Graduate) Use the **kodak** dataframe from the last problem to recreate the following graph. The first recorded photograph was taken in 1826. You may have to remove some observations that have obvious errors.
+
+```{r echo = ekosol, fig.height = 6, fig.width = 12, out.height=600}
+# Show your work here
+
+
+
+
+```

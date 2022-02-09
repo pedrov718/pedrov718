@@ -1,0 +1,251 @@
+---
+title: 'Lab #02'
+author: "pav35"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T)
+library(stringr)
+```
+
+
+
+Knit your final answers into a word document. Convert that to a PDF. Upload the PDF to Gradescope.
+
+Attach/Match the questions and your answers in Gradescope. Points will be deducted for each question where this is not done.
+
+This homework covers material that can be found up to page 10 in the notes. Do not use functions or operations not listed on those pages.
+
+Graduate questions are required for graduate students. They are extra credit for under graduates. Extra credit can not be used to raise a grade over 100%.
+
+If you are an undergraduate, and choose not to do the graduate questions, indicate this.
+
+
+Install and load the stringr package.
+
+\newpage
+
+
+
+1.	Create the following character vector based on the given descriptions and assign it to a variable.  The variable name should be descriptive of the content.
+
+    a.	non-consonant letters (5 elements)  
+    
+```{r}
+
+vowels = c("a","e","i","o","u")
+
+```
+ 
+\newpage 
+  
+2.	Make a single string out of the following vector. Do this twice. Once without using a function from the stringr package, and once using a function from the stringr package.
+
+
+```{r} 
+  # a. c("We", "welcome", "change", "and", "openness;", "for", "we", "believe", "that",
+  #   "freedom", "and", "security", "go", "together,", "that", "the", "advance", "of",
+  #   "human", "liberty", "can", "only", "strengthen", "the", "cause", "of", "world",
+  #   "peace.", "There", "is", "one", "sign", "the", "Soviets", "can", "make", "that",
+  #   "would", "be", "unmistakable,", "that", "would", "advance", "dramatically", "the",
+  #   "cause", "of", "freedom", "and", "peace.", "General", "Secretary", "Gorbachev,",
+  #   "if", "you", "seek", "peace,", "if", "you", "seek", "prosperity", "for", "the",
+  #   "Soviet", "Union", "and", "eastern", "Europe,", "if", "you", "seek", "liberalization,",
+  #   "come", "here", "to", "this", "gate.", "Mr.", "Gorbachev,", "open", "this", "gate.",
+  #   "Mr.", "Gorbachev,", "tear", "down", "this", "wall!")
+ # Link the words using a space
+
+non_sringr = c("We welcome change and openness; for we believe that freedom and security go together, that the advance of human liberty can only strengthen the cause of world peace. There is one sign the Soviets can make that would be unmistakable, that would advance dramatically the cause of freedom and peace. General Secretary Gorbachev, if you seek peace, if you seek prosperity for the Soviet Union and eastern Europe, if you seek liberalization, come here to this gate. Mr. Gorbachev, open this gate. Mr. Gorbachev, tear down this wall!")
+
+str_c(string = c("We", "welcome", "change", "and", "openness;", "for", "we", "believe", "that",
+    "freedom", "and", "security", "go", "together,", "that", "the", "advance", "of",
+    "human", "liberty", "can", "only", "strengthen", "the", "cause", "of", "world",
+    "peace.", "There", "is", "one", "sign", "the", "Soviets", "can", "make", "that",
+    "would", "be", "unmistakable,", "that", "would", "advance", "dramatically", "the",
+    "cause", "of", "freedom", "and", "peace.", "General", "Secretary", "Gorbachev,",
+    "if", "you", "seek", "peace,", "if", "you", "seek", "prosperity", "for", "the",
+    "Soviet", "Union", "and", "eastern", "Europe,", "if", "you", "seek", "liberalization,",
+    "come", "here", "to", "this", "gate.", "Mr.", "Gorbachev,", "open", "this", "gate.",
+    "Mr.", "Gorbachev,", "tear", "down", "this", "wall!"), collapse = " " )
+
+
+```
+
+ 
+\newpage 
+  
+
+3.	A Caesar Cypher is a simple method for encoding a message. The method takes each letter in a given message and shifts it to a letter a fixed number of places to the right of it in the alphabet. Letters at the end of the alphabet wrap around to the beginning. For example, if the shift is 1, then A becomes B, B becomes C, Y becomes Z, and Z becomes A. Other shifts can be used. The messages below have been encoded with a Caesar Cipher. Decode them.
+
+    a.	ifbp, axjkba ifbp, xka pqxqfpqfzp (Shift of 3)
+
+```{r}
+#  This string might be useful: "abcdefghijklmnopqrstuvwxyz"
+
+letter_string = "abcdefghijklmnopqrstuvwxyz"
+chartr(old = letter_string, new= "cdefghijklmnopqrstuvwxyzab", c("ifbp", "axjkba", "ifbp", "xka", "pqxqfpqfzp"))
+
+first_cypher = "ifbp"
+first_cypher_decode = "lies"
+
+second_cypher = "axjkba"
+second_cypher_decode = "damned"
+
+third_cypher_decode = "lies"
+
+fourth_cypher_decode = "and"
+
+fifth_cypher_decode = "statistics"
+
+```
+ 
+\newpage 
+  
+4.	Extract the portion of each string that does not contain equal signs:
+
+   
+    
+```{r}
+#a.
+equal_signs_string = "=I want this part.===="
+
+str_replace_all(string = equal_signs_string, "=", "")
+
+
+```
+
+\newpage
+
+5. Split this string into a character vector with one word per element. Leave no extraneous spaces or characters.
+
+```{r}
+#a.
+
+q_5_string = "The single most important component of a camera is the twelve inches behind it"
+
+str_split(string = q_5_string, pattern = " ")
+
+```
+ 
+\newpage 
+  
+
+6. Make a character vector with 26 elements. The first element should be "I like the letter A.". The second element should be "I like the letter B." This should continue until the twenty sixth element "I like the letter Z."
+
+```{r}
+str_c("I like the letter ", c("A","B","C","D","E","F", "G", "H", "I","J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"))
+
+
+
+```
+ 
+\newpage 
+  
+7. Using/creating two logical vectors, determine the value of the following:
+    
+    a. FALSE or TRUE
+    b. TRUE or TRUE
+    c. FALSE or TRUE
+    d. TRUE or FALSE
+    
+```{r}
+part_7_vec_1 = c(F,T,F,T) 
+part_7_vec_2 = c(T,T,T,F)
+
+part_7_vec_1 | part_7_vec_2
+```
+ 
+\newpage 
+      
+
+8. Translating this directly into the appropriate logical operations, determine if this is TRUE:
+
+    a. (T or F) and T
+    
+```{r}
+
+(T | F) &T
+
+```
+ 
+\newpage 
+      
+
+9. Compute the value of without using recycling.
+
+    a. c( T, T, F, F, TRUE ) and T
+    
+```{r}
+
+c(T,T,F,F, TRUE) & c(T,T,T,T,T)
+
+```
+
+ 
+\newpage 
+  
+
+10. Using the result from question 9, determine if **any** and/or **all** of the resulting elements are TRUE.
+
+```{r}
+
+part_9_bools = c(T,T,F,F, TRUE) & c(T,T,T,T,T)
+
+any(part_9_bools)
+all(part_9_bools)
+
+
+```
+
+ 
+\newpage 
+     
+
+
+11. Using the following sets of vectors, determine how elements from the first vector are related to the corresponding elements from the second. Use the indicated comparison.
+
+    a. c(1, 2, 3, 4, ...., 25),  c(sqrt(1), sqrt(2), ..., sqrt(25))^2, (greater than or equal to)
+    
+```{r}
+# This might be useful
+ques_11_x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
+
+
+ques_11_x >=  sqrt(ques_11_x)^2
+ 
+```
+
+ 
+\newpage 
+  
+
+12. Determine if the two given vectors are identical. 
+
+  a. c("the", "dude", "abides"), c("the", "dude", "abides", "the", "dude", "abides")
+
+```{r}
+c("the", "dude", "abides") == c("the", "dude", "abides", "the", "dude", "abides")
+
+```
+
+ 
+\newpage 
+  
+13. Ask, from a safe distance, seven people the following questions:
+        
+    a. Is there at least one type of ice cream that you like?
+    b. Would at least one of your eyes be considered blue?
+        
+    Record each set of answers with an appropriately named logical variable. Determine with some $R$ operations if at least one of the individuals you spoke to answered in the affirmative to both questions.
+        
+
+```{r}
+likes_icecream = c(T,T,F,T,F,T,T)
+blue_eyes = c(F,F,F,F,F,F,F)
+
+any(likes_icecream &  blue_eyes)
+```
+

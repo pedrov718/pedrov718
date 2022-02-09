@@ -1,0 +1,194 @@
+---
+title: "Homework #4"
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+library(ggplot2)
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+ 
+
+\newpage
+
+Problem 1: Construct a dataframe for each of the following sets of specifications.  The construction of each should not be done by brute force ( listing out elements). 
+
+  a. Name: example.dataframe, 
+  b. Three variables with 78 observations each. 
+  c. variable.1 contains the letters of the lowercase alphabet each repeated 3 times consecutively. 
+  d. variable.2 contains numbers 1 - 78 in decreasing order.
+  e. variable.3 contains the last 78 colors in the colors() function. Starting with the last in the list alphabetically.
+
+
+ 
+```{r}
+# Show your work here
+variable.1 = rep(letters, each = 3)
+variable.2 = seq(from = 78, to = 1)
+variable.3 = sort(colors())[(657-77):657] 
+example.dataframe = data.frame(variable.1, variable.2,variable.3)
+
+example.dataframe
+
+
+
+
+
+```
+
+
+
+
+\newpage
+
+
+Problem 2: How many rows and columns do the dataframe have? This should be done with a function, not by inspection.
+
+  a. Formaldehyde
+  b. Loblolly
+  
+  
+
+```{r}
+# Show your work here
+
+print(dim(Formaldehyde))
+print(dim(Loblolly))
+
+```
+ 
+
+
+
+
+\newpage
+
+Problem 3: Extract the following from the indicated dataframe: (This should not be done by inspection.)
+
+```{r}
+
+# Formaldehyde: The optical density variable ( Use a name, and show only entries 3 and 4) 
+# ChickWeight:  The weight variable ( Use indexes show only entries 15, 16, 19, 40)
+# Show your work here
+
+
+optical_density = Formaldehyde$"optden"[3:4]
+
+
+chicken_weight = ChickWeight$"weight"[c(15,16,19,40)]
+
+print( optical_density)
+
+print(chicken_weight)
+
+```
+
+
+
+\newpage
+
+
+
+
+Problem 4: Extract the following from the indicated dataframe: (This should not be done by inspection.)
+
+```{r}
+# Formaldehyde: Rows with carb over 0.5 ml
+# ChickWeight:  Rows at age 0 days.
+# Show your work here
+
+Formaldehyde$carb[Formaldehyde$carb > .5]
+
+
+ChickWeight[ChickWeight$Time == 0,]
+
+```
+
+
+\newpage
+
+
+Problem 5: Recreate the following graphs using the dataframe indicated in the title. (Do not worry about recreating the title)
+
+```{r }
+# Show your work here
+
+tree_plot = ggplot(data = trees) + geom_point(mapping = aes(x = Volume, y = Height, color = Girth)) + scale_fill_manual(values = c("blue")) + xlab("Volume") + ylab("Height") + labs(title = "Trees")
+
+tree_plot
+
+
+#quakes
+#+ scale_fill_manual(values = c("blue", "grey50")) 
+
+quakes_plot = ggplot(data = quakes, mapping = aes(x = depth, y = mag, color = mag, depth)) + geom_point(size = 5, alpha = .25) + xlab("depth") + ylab("mag") + labs(title = "Quakes") 
+quakes_plot
+```
+
+
+
+
+
+
+
+\newpage
+
+
+Problem 6: (GRADUATE) Extract the following from the indicated dataframe: (This should not be done by inspection.)
+
+```{r}
+# Loblolly: The age of all Loblolly pine trees with a height over 55 ft.
+# ChickWeight:  The weight of chicks at 4 days old.
+# Show your work here
+
+
+age_over55 = Loblolly$age[Loblolly$height > 55]
+
+weight_over_4days = ChickWeight$weight[ChickWeight$Time >= 4]
+
+print(age_over55)
+
+print(weight_over_4days)
+```
+
+
+
+
+\newpage
+
+
+Problem 7: (GRADUATE) Sort the rows/observations of the ChickWeight dataframe. The weight variable entries should be increasing.   (This should not be done by inspection.)
+
+```{r}
+# Show your work here
+# library(dplyr)
+# arrange(ChickWeight, weight)
+
+chicken_weight_ascending =  ChickWeight[order(ChickWeight$weight),] 
+
+```

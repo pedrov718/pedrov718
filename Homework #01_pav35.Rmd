@@ -1,0 +1,249 @@
+---
+title: 'Homework #01'
+author: pav35
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = T, eval=T)
+
+```
+
+
+
+Knit your final answers into a word document. Convert that to a PDF. Upload the PDF to Gradescope.
+
+Attach/Match the questions and your answers in Gradescope. Points will be deducted for each question where this is not done.
+
+This homework covers material that can be found up to page 10 in the notes. Do not use functions or operations not listed on those pages.
+
+Graduate questions are required for graduate students. They are extra credit for under graduates. Extra credit can not be used to raise a grade over 100%.
+
+\newpage
+
+1. Determine the following:
+ 
+```{r} 
+  #  a.
+sqrt(24)
+  #  b. 
+(sin(6*pi)/tan(7*pi))*(180/pi)
+```
+    
+
+
+\newpage
+  
+
+2. For each of part, compute a vector that contains the values listed for that part. 
+
+    a. Two squared. Three cubed. Four to the forth. Five fifthed. ... Ten to the tenth.  
+    b.The vector containing: The quotient of 5 divided by 3. The quotient of 2 divided by 4. The quotient of 228 divided by 8. The quotient of 323 divided by 8. 
+    
+```{r}
+
+# a.
+
+bases = c(2,3,4,5,6,7,8,9,10) 
+powers = c(2,3,4,5,6,7,8,9,10)
+c(bases^powers)
+# b. 
+
+```
+
+\newpage
+
+3. Compute the following making use of recycling.( Shrink the given vectors)
+
+    a. c(1, 2, 3, 4, 5, 6) * c( 0, 4, 6, 0, 4, 6) - c(1, 1, 1, 1, 1, 1, 1 )
+    b. c(1, 2, 3, 4, 5, 6) * c( 0, 4, 6, 1, 9, 0) - c(1, 1, 1, 1, 1, 1 )
+
+```{r}
+
+# a.
+c(1, 2, 3, 4, 5, 6) * c( 0, 4, 6, 0, 4, 6) - c(1, 1, 1, 1, 1, 1, 1 )
+
+c(1,2,3,4,5,6) * c(0,4,6) - 1
+
+# b.
+
+c(1,2,4,5,6) * c(0,4,6,1,9) - 1
+
+```
+
+
+
+\newpage
+    
+4. Compute the following without using recycling.( Expand the given vectors as needed)
+
+    a. c(1, 2) + ( c(0, 10, -1) * 20 )
+    b. c(1, 2) / c(1, 2, 1, 2) - c(1, -1, 1, -1, 1, -1)
+    
+```{r}
+
+# a.
+
+c(1,2,1) + (c(0,10,-1) * c(20,20,20))
+
+# b. 
+
+c(1,2,1,2,1,2) / c(1,2,1,2,1,2) - c(1,-1,1,-1,1,-1)
+
+
+```
+
+
+\newpage
+
+5. Create a single variable for each of the following vectors. Use a descriptive name. The naming convention to use is indicated.
+
+    
+```{r}
+
+# a.
+
+divide_by_pi = c(0,1,2,3,4,5,6,7,8)/ pi
+
+# b. 
+
+divideBypowers = 1/c(1,2,2^2,2^3,2^4,2^5,2^6,2^7,2^8)
+
+```
+
+
+
+\newpage
+
+    
+6. Use the given variables to create the indicated vectors. 
+
+```{r}
+ones<-c(1,1,1)
+evens<-c(2,4,6, 8)
+negatives<--c(10,20,30,120) 
+```
+
+    a. c(1, 1, 1, 1, 1, 1, 99)
+    b. c(1, 1, 1, 2, 4, 6, 8, 10, 20, 30, 120)
+    c. c(1,1,1,99,10,20,30,120,10,20,30,120,1,1,1,1,1,1)
+    d. c(2,2,2,4,8,12,16)
+    e. c(0, 0, 0, 5, 4, 5, 15, 0, 0, 0, 0)
+    
+```{r}
+
+# a.
+
+c(ones,ones,99)
+
+# b. 
+
+c(ones,evens, -negatives)
+
+# c.
+
+c(ones, 99, -negatives, - negatives, ones, ones)
+
+# d.
+
+c(ones*2, evens*2)
+
+# e.
+
+c(ones-1, -negatives/evens,(evens/evens) -1)
+                                                      
+```    
+    
+    
+ 
+\newpage 
+
+
+7. ( Pythagorean Theorem ) 
+
+
+```{r}
+
+pyth_theorem = function(hypothenuse, side) {
+
+  other_side = sqrt(hypothenuse**2-side**2)
+  print(other_side)
+}
+ 
+# pyth_theorem(5,4)
+
+a = sqrt( 5^2 - 4^2)
+a
+b = sqrt( 13^2 - 12^2)
+b
+c = sqrt(41^2 - 40^2)
+c
+d = sqrt(29^2 - 21^2)
+d
+e = sqrt(65^2 - 63^2)
+e
+
+```
+
+
+\newpage
+
+    
+8. ( GRADUATE ) Given Newton's Law of Gravitation 
+
+```{r}
+
+newton_law = function(mass_1,mass_2,radius) {
+
+  g_force = 12.6*((mass_1 * mass_2)/radius^2)
+  print(g_force)
+}
+
+#newton_law(10,11,2)
+
+
+part_a = 12.6*((10 * 11)/2^2)
+part_a
+part_b =12.6*((34 * 21)/.5^2)
+part_b
+part_c = 12.6*((4 * 39)/19^2)
+part_c
+part_d = 12.6*((884 * 73)/98^2)
+part_d
+part_e = 12.6*((4 * 34)/23^2)
+part_e
+
+```
+
+\newpage
+    
+9. ( GRADUATE )Fibonacci Sequence 
+
+I know we haven't covered functions in class but I have been having a lot of fun programming in R so I thought I'd challenge myself with this. 
+
+```{r}
+
+#fib = (psi^n - phi^n)/ sqrt(5)
+
+fibonacci = function(n){
+  
+  psi = (1 + sqrt(5))/2
+  phi = ((1-sqrt(5))/2)
+  fib = (psi^n - phi^n)/ sqrt(5)
+  print(fib)
+  
+}
+
+c(fibonacci(0:20))
+
+#Or if I wanted to do it manually. 
+
+psi = (1 + sqrt(5))/2
+phi = ((1-sqrt(5))/2)
+one_twenty = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+
+fib_vect = (psi^one_twenty - phi^one_twenty)/ sqrt(5)
+fib_vect
+```

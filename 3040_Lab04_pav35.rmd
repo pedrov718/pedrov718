@@ -1,0 +1,153 @@
+---
+title: "Lab #4"
+author: "NETID"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+library(ggplot2)
+
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+ 
+
+\newpage
+
+
+Problem 1: Construct a dataframe for each of the following sets of specifications.  The construction of each should not be done by brute force ( listing out elements). 
+
+  a. Name: example.dataframe.1, 
+  b. Four variables with 10 observations each. 
+  c. variable.1 contains ten replications of the string 1.
+  d. variable.2 contains numbers 1 - 10 in increasing order.
+  e. variable.3 contains ten $TRUE$ values.
+  f. variable.4 contains the first 10 colors from the colors function.
+
+
+ 
+```{r}
+# Show your work here:
+variable_1 = rep("1", times = 10)
+variable_2 = c(1:10)
+variable_3 = rep(TRUE, times = 10)
+variable_4 = colors()[1:10]
+dat1 = data.frame(variable_1)
+dat2 = data.frame(variable_2)
+dat3 = data.frame(variable_3)
+dat4 = data.frame(variable_4)
+
+
+```
+
+
+
+
+\newpage
+
+
+Problem 2: How many rows and columns do the dataframe have? This should be done with a function, not by inspection.
+
+  a. ChickWeight
+
+
+```{r}
+# Show your work here:
+
+
+dim(ChickWeight)
+
+```
+
+
+
+
+\newpage
+
+Problem 3: Extract the following from the indicated dataframe: (This should not be done by inspection.)
+
+```{r}
+
+# Loblolly: The age variable
+# Show your work here
+
+Loblolly$age
+
+
+
+```
+
+
+
+\newpage
+
+
+
+
+Problem 4: Extract the following from the indicated dataframe: (This should not be done by inspection.)
+
+```{r}
+# Loblolly: Rows with heights over 60 ft
+# Show your work here
+
+Loblolly[Loblolly$height > 60, ]
+
+
+```
+
+
+\newpage
+
+
+Problem 5: Add an extra column to the **Formaldehyde** data frame. It should be called **double.optden**. Its values should be double the values of the **optden** variable.  (Each value should not be individually computed and placed in a vector. The values should all be created as a function of the original **optden** vector as a whole.) Show the new structure of Formaldehyde.
+
+
+```{r}
+
+Formaldehyde$"double.optden" = Formaldehyde$optden * 2
+
+Formaldehyde
+
+```
+
+
+\newpage
+
+
+Problem 6: Recreate the following graphs using the dataframe indicated in the title. (Do not worry about recreating the title)
+
+```{r }
+# Show your work here
+
+loblolly_graph = ggplot(data = Loblolly, mapping = aes( x = age, y = height)) + geom_point( )
+
+loblolly_graph
+
+
+
+```
+
+

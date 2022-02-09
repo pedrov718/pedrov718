@@ -1,0 +1,198 @@
+---
+title: "Lab #3"
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should have:
+
+  a. made use of only functions listed in lab, or previous labs.
+  b. each problem on a different page.
+  c. any computed values displayed either inline or explicitly at the end of a code chunk.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+ 
+
+\newpage
+
+
+Problem 1:  Determine the type of vector for each of the following: integer, double, character, logical
+
+
+```{r echo = T, eval = T}
+#Show your work here.
+
+#a. <- 
+  one_a = c(T, T, T, T, "F")
+  typeof(one_a)
+
+#b. 
+  one_b = c(T, 1)
+  typeof(one_b)
+
+
+```
+
+
+
+\newpage
+
+
+Problem 2: Create the following vectors and assign a variable to the result
+
+  a. Nine evenly spaced elements starting at -0.123 and ending at 68
+
+
+
+
+```{r}
+#Show your work here.
+
+two_vector = seq(from = -0.123, to = 68, length.out = 9 )
+print(two_vector)
+
+```
+
+
+\newpage
+
+
+Problem 3: Determine the number of elements in the following vectors.
+ 
+
+```{r echo = T, eval = T}
+#Show your work here.
+x <- seq(from = 156, to = 10000, by = pi)
+length(x)
+
+
+```
+
+\newpage
+
+
+Problem 4: Use the given vectors and the $rep()$ to create the indicated vector:
+
+```{r eval =FALSE, echo =T}
+   
+[1] "girl" "boy"  "girl" "boy"  "girl" "boy"  "girl" "boy"  "girl" "boy"  
+[11] "girl" "boy"  "girl" "boy"  "girl" "boy"  "girl" "boy"  "girl" "boy"
+   
+```
+
+```{r echo = T, eval = T}
+a <- c("girl", "boy")
+x <- 1
+y <- 4:7
+z <- c(0, 0, 0, 0)
+#Show your work here.
+
+rep(a, length(c(x,y,z,x)))
+
+
+```
+\newpage
+
+
+
+
+
+
+
+Problem 5: Create the following matrix:
+
+```{r eval =FALSE, echo=TRUE}
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,] "a"  "b"  "c"  "d"  "e"  "f" 
+[2,] "g"  "h"  "i"  "j"  "k"  "l" 
+[3,] "m"  "n"  "o"  "p"  "q"  "r" 
+[4,] "s"  "t"  "u"  "v"  "w"  "x" 
+```
+
+```{r echo = T, eval = T}
+#Show your work here.
+
+# Create a vector with just the desired letters.
+dat = letters[1:24]
+print(dat)
+# Use the vector to create a matrix. Make note of the number of rows and colums as well as how they are filled in.
+letter_matrix = matrix(data = dat, nrow = 4, ncol = 6, byrow = TRUE )
+print(letter_matrix)
+
+```
+
+\newpage
+
+
+Problem 6: Extract all values in the fifth row of the matrix
+
+```{r echo = T, eval = T}
+#Show your work here.
+mat <- matrix(fruit, nrow = 16)
+#print(mat)
+print(mat[,5])
+
+
+```
+
+
+
+\newpage
+
+
+Problem 7: Determine if any of the values in the vector $x$ are equal to $\pm$`Inf`
+
+```{r echo = T, eval = T, results= 'hide'}
+#Show your work here.
+
+top <- -10001:10002
+bottom <- c(7, 121, 117)
+x <- 1/(top %/% bottom)
+
+is.infinite(top)
+
+is.infinite(bottom)
+
+is.infinite(x)
+
+```
+
+After running the is.inf command I can see that none of them are equal to plus or minus infinity.
+
+
+
+\newpage
+
+
+Problem 8: Determine if any of the values in the vector $x$ are missing (NA)
+
+```{r echo = T, eval = T, results= 'hide'}
+#Show your work here.
+
+# Don't worry about these commands, we will go over them in the future
+set.seed(3) 
+x <- sample(c(1,NA), size=10000, replace = TRUE, prob = c(.9999,.0001) )
+is.na(x)
+
+
+
+```
+None of the above values are equal to NA according to the is.na command. 

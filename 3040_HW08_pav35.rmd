@@ -1,0 +1,115 @@
+---
+title: 'Homework #8'
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, ekosol = TRUE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 200, fig.cap = NULL, message = FALSE, warning=FALSE)
+
+library(stringr)
+library(ggplot2)
+library(tibble)
+library(lubridate)
+library(openintro) # You need to install this package
+library(forcats)
+load('3040_Prelim_1_Data.RDATA')
+
+
+```
+
+Things to complete:
+
+a.  All examples completed by the TAs
+b.  All of the problems assigned to you
+
+Each problem should :
+
+a.  have made use of only functions listed in lab, or previous labs.
+b.  have each problem on a different page.
+c.  have any computed values displayed either inline or explicitly at the end of a code chunk.
+d.  not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+
+Thing to turn in:
+
+a.  One plain.dataF (produced from a knitted word document.)
+
+**Instructions:**
+
+1.  Recreate the given graphs.
+2.  Use either the dataframe indicated in the title or create the dataframe if there is no dataframe given in the title.
+3.  All individual plotted points have integer values. (If it looks like it is close to (2,1), then the plotted point is at (2,1) )
+4.  If the size of a point appears to be different from the default, the size does not need to be matched exactly. Relative size is all that should be maintained. 5.The only colors that will be specifically set/specified are: "black", "blue", "orange", "red", "grey50". Any other color is a natural selection of an aesthetic mapping.
+5.  Give each graph a 'more descriptive' title
+
+\newpage
+
+Problem 1: Create a function normal.graph.maker that plots a normal curve within 4 standard deviations of its mean. It should take 4 arguments:
+
+a.  mean - default is zero
+b.  standard deviation - defaults to 1
+c.  line color - default to red
+d.  line type - default to solid
+
+Figure out how to do that the function does first. Then turn that into a function.
+
+```{r echo = FALSE, fig.height = 5, fig.width = 9, out.height= 400, ekosol = TRUE}
+# Show your work here
+
+normal.graph.maker = function( mean = 0, std = 1, col = "red", type = 1){
+
+x = seq(-10,10, by = .1)
+ 
+y = dnorm(x, mean = mean, sd = std) 
+
+ggplot() + geom_path(mapping = aes(x, y, color = col), linetype = type)
+
+ }
+
+normal.graph.maker(mean = 4, std = 1, col = "red", type = 1 )
+```
+
+\newpage
+
+Problem 2: Create a function called distance. It will calculate the distance between two points, say ( x,y, z ) and (r, s,t ). It should take two arguments: start & stop. The formula for computing a distance is $$distance =  \sqrt{(x-r)^2+(y-s)^2 +(z-t)^2 }.$$ You will not receive credit for using a prexisting function that has this capability. Its default points should be the origin.
+
+```{r}
+# Show your work here
+distance = function(x = 0, y = 0, z = 0, r =0 ,s = 0, t= 0){
+sqrt((x-r)^2+(y-s)^2 +(z-t)^2) }
+
+distance(x=1,y=2,z=9, r = 1,s=2,t=3)
+
+distance()
+```
+
+\newpage
+
+Problem 3: Us the **plain.data** dataframe from your exam to recreate this graph. You will need to use factors and the **forcats** package.
+
+```{r, fig.height = 5, fig.width = 9, out.height= 400, }
+
+# Show your work here
+
+ggplot( data = plain.data, mapping = aes(x = fct_infreq(carrier), fill = carrier)) + geom_bar()+ labs( title = "Problem 3 Chart", x = "Air Lines", y= "Frequency")
+
+```
+
+\newpage
+
+Problem 4: Use the **plain.data** dataframe from your exam to recreate this graph. You will need to use the **lubridate** package.
+
+```{r fig.height = 5, fig.width = 9, out.height= 400}
+# Show your work here
+
+
+dates = make_date(month = plain.data$month, year = plain.data$year)
+
+ggplot(data = plain.data) + geom_point(mapping = aes(x = dates, y = air_time, color = carrier)) + facet_grid( ~ origin) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```

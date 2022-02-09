@@ -1,0 +1,197 @@
+---
+title: "Homework #7"
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 200, fig.cap = NULL, message = FALSE, warning=FALSE)
+library(stringr)
+library(ggplot2)
+library(tibble)
+library(openintro) # You need to install this package
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+
+**Instructions:**
+
+  1. Recreate the given graphs. 
+  2. Use either the dataframe indicated in the title or create the dataframe if there is no dataframe given in the title.
+  3. All individual plotted points have integer values. (If it looks like it is close to (2,1), then the plotted point is at (2,1) )
+  4. If the size of a point appears to be different from the default, the size does not need to be matched exactly. Relative size is all that should be maintained.
+  5.The only colors that will be specifically set/specified are: "black", "blue", "orange", "red", "grey50". Any other color is a natural selection of an aesthetic mapping.
+  6. Give each graph a 'more descriptive' title
+  
+   
+
+\newpage
+
+Problem 1: Using the given vector $x$, find the absolute value of the difference of consecutive elements. The result should be a vector named result. Use a for loop.
+
+```{r }
+x <- c( 1, 41, 82, 49, 65, 12, 76, 13, 18, 9, 96, 91, 22, 24, 48, 100, 38, 64, 19, 83, 85, 62, 78, 29, 61, 95, 6, 21, 28, 15, 45, 43, 97, 56, 93, 81, 87, 88, 52, 60, 79, 5, 94, 46, 66, 11, 14, 75, 59, 67, 63, 98, 23, 44, 8, 70, 27, 7, 69, 50, 55, 26, 4, 36, 2, 47, 40, 73, 35, 42, 74, 72, 54, 90, 68, 30, 84, 20, 51, 92, 25, 37, 57, 86, 53, 3, 33, 10, 16, 89, 32, 58, 34, 99, 17, 77, 71, 31, 39, 80)
+ln <- length(x)
+result <- rep( NA, times = ln-1)
+# Show your work here
+result = x
+
+for (index in 1:length(x)) {
+  result[index] = abs(result[index+1] - x[index])
+}
+
+print(result)
+
+```
+
+
+
+
+
+
+\newpage
+
+Problem 2: Using a for loop, determine the average of resulting vector from Problem 1.
+
+```{r }
+# Show your work here
+res = result[1: length(result) - 1]
+sum = 0
+for (i in 1:length(res)){
+  sum = res[i] + sum
+}
+average = sum/length(res)
+print(sum)
+```
+
+
+
+
+\newpage
+
+Problem 3: Using a for loop, determine the product of the elements of the vector $x$.
+
+```{r }
+x <- c(0.73, 0.95, 3.92, 3.78, 0.14, 0.89, 1.07, 3.26, -0.21, 0.39, -0.49, 1.16, -0.6, 1.18, 0.7, -0.79, -0.6, 2.59, 2.3, 3.57, 3.28, 3.94, 1.54, 2.1, 1.2, 1.21, 3.13, 3.5, 0.3, 2.94, 1.52, -0.42, 1.91, 0.02, 3.19, 3.72, 0.21, -0.43, 0.45, 2.37, 3.22, 3.45, 0.09, 3.9, -0.56, 0.56, -1, 0.04, 3.23, 0.3)
+# Show your work here
+
+for (val in 1:length(x)) {
+  product = (val * val+1)
+}
+print(product)
+```
+
+\newpage
+
+
+Problem 4: Use a for loop and if..else.. statements to create a new variable for the babies dataframe that will allow you to recreate the following graph.
+
+```{r message=FALSE, warning=FALSE,fig.height = 4, fig.width =8, out.height=500}
+remove(babies)
+cc <- complete.cases(babies$age)
+babies<-babies[cc,]
+babies$age_group = c()
+# Show your work here
+
+for (index in 1:length(babies$age)){
+  if (babies$age[index] <= 23) {
+ babies$age_group[index] =  "23 and below"}
+  else if (babies$age[index] > 23 & babies$age[index] <= 26){
+ babies$age_group[index] = "26 and below, above 23"}
+  else if ((babies$age[index] > 26) & (babies$age[index] <= 31)) 
+    babies$age_group[index] = "31 and below, above 26"
+  else if (babies$age[index] > 26)
+    babies$age_group[index] = "above 26"}
+  
+
+ggplot(data = babies, mapping = aes(x = gestation, y = bwt, color = babies$age_group )) + geom_point() + stat_smooth(se = FALSE) + labs(title = "Babies Born By Parents Age", x= "Gestation", y = "Birth Weigth", legend = "Age Group")
+
+```
+
+
+
+
+\newpage
+
+Problem 5: 
+
+```{r }
+# Show your work here
+ggplot(data = cpu, mapping = aes(y = base_clock,  fill = company)) + geom_bar(orientation = "y", width = .06, position = "dodge") + labs(title = "CPU DATA", x = "Frequency", y = "Base Clock ( GHz )")
+```
+
+
+
+
+\newpage
+
+
+Problem 6: 
+
+```{r message=FALSE, warning=FALSE}
+# Show your work here
+# wrap the date variable in the ymd() function
+
+library(lubridate)
+
+
+ggplot(data = goog, mapping = aes(x = ymd(date), y = open)) + geom_point(color = "blue", size =3) + geom_path(mapping = aes(color = close)) + geom_path(maping = aes(color = open)) + geom_hline(yintercept = 750, lty=2) 
+```
+
+
+
+\newpage
+
+
+Problem 7: Use the Rubber dataframe to recreate the following graph. A new variable should be created using the ifelse function. It should classify tensile  strenght as either Low or High
+
+```{r message=FALSE, warning=FALSE}
+# Show your work here
+
+library(MASS)
+Rubber
+Rubber.tensile_str = c()
+mean_tens = mean(Rubber$tens)
+
+for (index in 1:length(Rubber)){
+  if (Rubber$tens[index] >= mean_tens){
+    Rubber.tensile_str[index] = "High"}
+  else if (Rubber$tens[index] < mean_tens) {
+    Rubber.tensile_str[index] = "Low"}
+}
+ggplot(data = Rubber, mapping = aes(x = hard, y = loss)) +  geom_point(shape = 2, fill = "blue", color = "blue") + geom_smooth(color = "red") + labs(title = "Rubber Data Frame", x = "Hardness", y = "Abrasian Loss")
+```
+
+
+
+\newpage
+
+Problem 8(graduate): Recreate the graph
+
+```{r fig.height = 6, fig.width =12, out.height=500}
+# Show your work here
+
+
+```
+
+

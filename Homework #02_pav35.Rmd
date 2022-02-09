@@ -1,0 +1,241 @@
+---
+title: 'Homework #02'
+author: "pav35"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T)
+library(stringr)
+
+```
+
+
+
+Knit your final answers into a word document. Convert that to a PDF. Upload the PDF to Gradescope.
+
+Attach/Match the questions and your answers in Gradescope. Points will be deducted for each question where this is not done.
+
+This homework covers material that can be found up to page 10 in the notes. Do not use functions or operations not listed on those pages.
+
+Graduate questions are required for graduate students. They are extra credit for under graduates. Extra credit can not be used to raise a grade over 100%.
+
+
+
+1.	Create a character vector called blank. It should have 5 elements. The middle three should be spaces. The outer two should be empty strings. ( Check your notes.)
+
+```{r}
+blank = c(" "," "," ","","")
+#str_pad(string = blank, width = 5, side = "left", pad = " ")
+```
+
+\newpage
+
+2.	Create the following character vectors based on the given descriptions and assign it to a variable. Each individual bold item in the description should be its own element. The variable name should be descriptive of the content.
+
+    a.	First five words in US National Anthem
+    b.	First five sentences in A Tale of Two Cities 
+    
+```{r}
+US_anthem_first_5 =  c("Oh", "say", "can", "you", "see")
+
+tale_of_two_5words = c("It", "was", "the", "best", "of")
+```
+ 
+\newpage
+
+3.	With and without the $stringr$ package, make a single string out of each of the following vectors.
+
+
+```{r} 
+
+# a. <- 
+  question_3_para = c("I", "am", "closing", "my", "52", "years", "of", "military", "service.",
+    "When", "I", "joined", "the", "Army,", "even", "before", "the", "turn", "of",
+    "the", "century,", "it", "was", "the", "fulfillment", "of", "all", "of", "my",
+    "boyish", "hopes", "and", "dreams.", "The", "world", "has", "turned", "over",
+    "many", "times", "since", "I", "took", "the", "oath", "on", "the", "plain", "at",
+    "West", "Point,", "and", "the", "hopes", "and", "dreams", "have", "long", "since",
+    "vanished,", "but", "I", "still", "remember", "the", "refrain", "of", "one",
+    "of", "the", "most", "popular", "barrack", "ballads", "of", "that", "day", "which",
+    "proclaimed", "most", "proudly", "that", "old", "soldiers", "never", "die;",
+    "they", "just", "fade", "away.", "And", "like", "the", "old", "soldier", "of",
+    "that", "ballad,", "I", "now", "close", "my", "military", "career", "and", "just",
+    "fade", "away,", "an", "old", "soldier", "who", "tried", "to", "do", "his", "duty",
+    "as", "God", "gave", "him", "the", "light", "to", "see", "that", "duty.Good", "Bye.")
+
+  paste(string = question_3_para, collapse ="_")
+  str_flatten(string = question_3_para, collapse = "_")
+  
+
+
+
+# Link the words using an underscore
+
+
+
+```
+ 
+\newpage
+
+
+4.	( Graduate ) A Caesar Cypher is a simple method for encoding a message. The method takes each letter in a given message and shifts it to a letter a fixed number of places to the right of it in the alphabet. Letters at the end of the alphabet wrap around to the beginning. For example, if the shift is 1, then A becomes B, B becomes C, Y becomes Z, and Z becomes A. Other shifts can be used. The messages below have been encoded with a Caesar Cipher. Decode them.
+
+    
+```{r}
+
+coded.message <- "vnuzumxgvne zu znk gsgzkax oy xkixkgzout, zu znk vxulkyyoutgr oz oy cuxq, gtj ngxj cuxq zuu, tu sgzzkx nuc vrkgyaxghrk oz se hk."
+
+letter_string = "abcdefghijklmnopqrstuvwxyz"
+chartr(old = letter_string, new = "uvwxyzabcdefghijklmnopqrst", c("vnuzumxgvne zu znk gsgzkax oy xkixkgzout, zu znk vxulkyyoutgr oz oy cuxq, gtj ngxj cuxq zuu, tu sgzzkx nuc vrkgyaxghrk oz se hk."))
+
+```
+ 
+\newpage
+
+5.	Replace the portion of the string that contains equal signs with "Hey! ". (Notice the space.)
+
+    
+```{r}
+str.with.equal.signs <- "==========I want this part."
+str_replace_all(string = str.with.equal.signs, pattern = "=", replacement = "Hey! ")
+
+### Or do you mean this??
+
+
+str_replace_all(string = str.with.equal.signs, pattern = "==========", replacement = "Hey! ")
+
+```
+
+ 
+\newpage
+
+
+6. Split these strings each into a character vector with one word per element. Leave no extraneous spaces or characters.
+
+```{r}
+
+# a. <- 
+ques_6_string_a = "I:_:turn:_:people:_:into:_:human:_:beings:_:by:_:not:_:making:_:them:_:into:_:gods"
+
+ques_6_split = str_split(string = ques_6_string_a, pattern = ":_:")
+
+#strtrim(str_split(string = ques_6_string_a, pattern = ":_:"), side  = c("both"))
+
+str_squish(ques_6_split)
+
+
+# (Graduate)
+# b. <- 
+
+ques_6_string_b = "If  you   place   the   imperfect   next   to     the   perfect, people will see the difference between the one    and the other. But if you  offer the  imperfect alone, people are    only   too apt to        be satisfied by it"
+
+ques_6_string_squish = str_squish(ques_6_string_b) 
+
+print(ques_6_string_squish)
+
+```
+
+\newpage
+
+7. Make a character vector with 10 elements. They should indicate Santa Claus' fictional enthusiasm, as he makes his fictional trip around the world.
+
+Ho!Ho!Ho!Ho!Ho!Ho!Ho!Ho!Ho!   
+Ho!Ho!Ho!Ho!Ho!Ho!Ho!Ho!    
+Ho!Ho!Ho!Ho!Ho!Ho!Ho!   
+etc.
+
+```{r}
+santa = c("Ho!")
+santa_10 = c(rep(santa,10))
+```
+
+
+
+ 
+
+
+ 
+\newpage
+
+    
+
+8. Compute the value of each without using recycling.
+
+    a. c( T, not FALSE, T, TRUE, T, T ) or c(F, F, not T )
+    b. not c( FALSE, not FALSE, T, TRUE, T, T, FALSE ) or  not c(not F, not F, not FALSE, T )
+    
+    
+```{r}
+
+c( T, !F, T, TRUE, T, T ) | c(F, F, !T, F, F, !T )
+
+!c( FALSE,  FALSE, T, TRUE, T, T, FALSE ) |  !c( !F, !F, !FALSE, T, !F,!F, !FALSE )
+
+```
+
+
+
+
+ 
+\newpage
+
+
+
+
+9. Perform a series of logical operations on the given vectors so that the result is a vector whose entries are all TRUE. All vectors in each part must be used at least once.  Operations from the previous vectors can't be used. (Experiment)
+
+    
+    
+```{r}
+logical.1 <- c(T, T, T, T, F, F, F, F)
+logical.2 <- -c(T, T, F, F)
+logical.3 <- c(T, F)
+
+logical.1 | logical.2
+
+```
+  
+\newpage
+       
+
+10. Using the following sets of vectors, determine how elements from the first vector are related to the corresponding elements from the second. Use the indicated comparison.
+
+  a. c("a", "b", "c"), c("b", "c", "b") (greater than)
+  b. c(1, 2, 3, 4), c("1", "2", "3", "4") (equality)
+
+  
+```{r}
+c("a", "b", "c") >= c("b", "c", "b")
+
+c(1, 2, 3, 4) == c("1", "2", "3", "4")
+
+```
+
+ 
+\newpage
+
+
+11.  For each pairing, determine if the two given vectors are identical, and if **all** of the paired components are equal (==). If there is a discrepancy, give an explanation.
+
+
+
+```{r}
+#Pair #1
+logical.1a <- c(T, T, F, T)
+logical.1b <- c(TRUE, TRUE, FALSE, TRUE)
+
+logical.1a == logical.1b
+
+all(logical.1a,logical.1b)
+
+#Pair #2
+logical.2a <- c(TRUE, FALSE)
+logical.2b <- c(1, 0)
+logical.2a == logical.2b
+
+all(logical.2a,logical.2b)
+``` 
+

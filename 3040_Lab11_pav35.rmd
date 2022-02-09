@@ -1,0 +1,107 @@
+---
+title: 'Lab #11'
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, dpi =200, fig.cap = NULL, message=FALSE, warning=FALSE)
+library(stringr)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(openintro) 
+library(tidyr)
+load("Lab11.RDATA")
+# You need to install this package
+ekosol <- TRUE
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+  
+
+\newpage
+
+Assuming that the **who.tidy** dataframe is tidy, each problem requires taking a 'messy' dataframe and making it tidy like **who.tidy**.
+
+```{r}
+who.tidy
+```
+
+
+Problem 1: Make **who2** look like **who.tidy**. Reassigning **who.tidy** to **who2** will receive no credit.
+
+```{r echo = ekosol}
+who2
+# Show your work here
+
+pivot_wider(data = who2, id_cols = country, names_from = type, values_from = count)
+
+
+```
+
+
+\newpage
+
+Problem 2: Make **who3** look like **who.tidy**. Reassigning **who.tidy** to **who3** will receive no credit.
+
+```{r echo = ekosol}
+who3
+# Show your work here
+
+separate(data = who3, col = rate, into = c('cases', 'population'))
+
+```
+
+
+
+\newpage
+
+Problem 3: Use **who4a** and **who4b** to recreate **who.tidy**. Assigning **who.tidy** as your answer will receive zero credit.
+
+```{r echo = ekosol}
+who4a
+who4b
+# Show your work here
+
+
+new = full_join(who4a, who4b, by = 'country')
+```
+
+
+\newpage
+
+Problem 4: Use **who5** to recreate **who.tidy**. Assigning **who.tidy** as your answer will receive zero credit.
+
+```{r echo = ekosol}
+who5
+# Show your work here
+
+unite(data = who5, col = year, century, year, sep = "" )
+separate(data = who5, col = rate, into = c('cases', 'population'))
+
+```

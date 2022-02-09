@@ -1,0 +1,190 @@
+---
+title: "Homework #10"
+author: "NETID"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 200, fig.cap = NULL, message = FALSE, warning=FALSE, error = TRUE)
+library(stringr)
+library(ggplot2)
+library(tibble)
+library(lubridate)
+library(openintro) 
+load("Lab09.RDATA")
+ekosol <- TRUE
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+
+**Instructions:**
+
+  1. Recreate the given graphs. 
+  2. Use either the dataframe indicated in the title or create the dataframe if there is no dataframe given in the title.
+  3. All individual plotted points have integer values. (If it looks like it is close to (2,1), then the plotted point is at (2,1) )
+  4. If the size of a point appears to be different from the default, the size does not need to be matched exactly. Relative size is all that should be maintained.
+  5.The only colors that will be specifically set/specified are: "black", "blue", "orange", "red", "grey50". Any other color is a natural selection of an aesthetic mapping.
+  6. Give each graph a 'more descriptive' title
+  
+   
+
+\newpage
+
+Problem 1: Display all strings in the **sentences** vector that end with a digit.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+
+Problem 2: Display all strings in the **sentences** vector that do not start with an uppercase letter.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+Problem 3: A **consecutive pair** of a leTTer is an oCCurence were a leTTer aPPears twice in a row.  Find all strings that contain at least two consecutive pairs of the same letter. The first sentence of this question satifies this. The letter T shows up as a pair twice. The second sentence of this problem as some consecutive letters, but the pairing does not show up more than once. Use the **sentences** vector.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+
+Problem 4: Display all strings in the **sentences** vector that do not do not contain a lower case r, s or t.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+
+Problem 5: Display all strings in the **words** vector that start with a vowel, contain q and end with a consonant.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+
+Problem 6: Display all strings in the **words** vector that start with a vowel, contain q and end with a consonant.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+Problem 7: Display all strings in the **words** vector that are ten or eleven letters long.
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+
+\newpage
+
+Problem 8: Display all strings in the **words** vector that start and end with the same two letters, in reverse order..
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+
+\newpage
+
+Problem 9: Display all strings in the **sentences** vector whose last full word is "cat".
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+\newpage
+
+
+Problem 9: Display all strings in the **colors()** function does not contain any of the following color names followed by a digit:
+
+  a. brown
+  b. white
+  c. light
+  d. dark
+  e. blue
+  f. grey or gray
+  g. green
+  
+
+```{r echo = ekosol, fig.height = 8, fig.width = 16}
+# Show your work here
+
+
+
+
+```
+
+
+
+
+
+

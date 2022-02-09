@@ -1,0 +1,190 @@
+---
+title: "Homework #3"
+author: "NETID"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should have:
+
+  a. made use of only functions listed in lab, or previous labs.
+  b. each problem on a different page.
+  c. any computed values displayed either inline or explicitly at the end of a code chunk.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+ 
+
+\newpage
+
+Problem 1: Make a vector, **lEtTeRs**, with the following attributes:
+
+      names (in order): lower a, upper B, lower c, upper D, ..., upper J
+      comment: Letters a-j alternating case.
+      elements: The obvious elements based on everything listed.
+
+```{r}
+# Show your work here.
+# aBcDeFgHiJ
+lETeRs = paste(letters[1:10], LETTERS[1:10], sep = "", collapse = NULL)
+# Display the attributes here
+lETeRs
+
+
+
+
+
+```
+
+\newpage
+
+Problem 2: Create the following vectors and assign a variable to the result
+
+  a. Twenty-five more than the square root of all multiples of 82 between 1 and 2001.
+
+
+
+
+```{r}
+#Show your work here.
+
+problem2 = sqrt(seq(1, 2001, by = 82)) + 25
+
+problem2
+
+```
+
+
+\newpage
+
+
+
+Problem 3: Use the given vectors and the $rep()$ to create the indicated vector:
+
+```{r eval =FALSE}
+   
+[1] "girl" "girl" "girl" "girl" "girl" "girl" "girl" "girl" "girl" "girl"  
+[11] "boy"  "boy"  "boy"  "boy"  "boy"  "boy"  "0"    "0"    "0"    "0" 
+   
+```
+
+```{r echo = T, eval = T}
+a <- c("girl", "boy")
+x <- 1
+y <- 4:7
+z <- c(0, 0, 0, 0)
+#Show your work here.
+
+c(rep(a[1], times = 10 ), rep(a[2], times = 6), z)
+
+```
+\newpage
+
+Problem 4 Determine the number of elements in the following vectors.
+
+  a. Elements start at -7.2, increasing by .3, no larger than 56.8
+
+```{r}
+#Show your work here.
+
+length(seq(-7.2, 56.8, .3))
+
+```
+The number of elements is 214. 
+
+\newpage
+
+Problem 5: Find all elements in the given vector that make $f(x)=0$ ( or **near**ly equal to zero ) where $$f(x)=x^5+x^4-2.9x^3-2.9x^2-4.4x-4.4$$. Make sure to display them
+
+
+```{r echo = T, eval = T}
+x <- seq(from = -10, to = 10, by = .1)
+
+# Show your work here.
+
+x[0 == x^5+x^4-2.9*x^3-2.9*x^2-4.4*x-4.4]
+
+
+```
+
+
+\newpage
+
+
+Problem 6:  Sort these from lowest to highest. Then extract/filter out the nine-hundredth value. Only functions outlined in the notes( before page 37 ) may be used.
+
+```{r echo = T, eval = T}
+x <- (-101:10002) %% c( 17, 41, 121, 307)
+
+# Show your work here.
+# First -  Create a vector that rearranges the indexes values of x.
+sort(x)[900]
+
+```
+
+
+\newpage
+
+
+Problem 7: Create a matrix with 13 columns. The first row should include the first 13 lower case letters of the alphabet. The second row should list the last 13 uppercase letters of the alphabet. The last row should consist of the first 13 **fruit** whose names have at most 10 letters in their name (including spaces). What are the elements of the twelfth column?
+
+
+```{r echo = T, eval = T}
+#Show your work here.
+prob7_dat = c(letters[1:13], LETTERS[13:26], fruit[length(fruit["name"]) <= 10])
+
+letters_and_fruits = matrix(data = prob7_dat, nrow = 3, ncol = 13, byrow = TRUE)
+
+letters_and_fruits
+
+letters_and_fruits[,12]
+```
+
+\newpage
+
+Problem 8: ( Graduate ) Determine how often one of these strings ( "id", "in", "Id", "In") occurs in **split.text**. 
+
+You should use $R$ to do the counting.
+
+
+```{r}
+#Run this next line each time you generate your text.
+library(stringi)
+text <- stri_rand_lipsum(n_paragraphs = 1, start_lipsum =TRUE)
+split.text <- str_split(text, pattern =" ", simplify = TRUE)
+
+
+sum(str_count(split.text, regex("id")))
+sum(str_count(split.text, regex("in")))
+sum(str_count(split.text, regex("Id")))
+sum(str_count(split.text, regex("In")))
+```
+
+\newpage
+
+
+Problem 9: ( Graduate ) Load the "datasets" library. This gives you access to the **freeny.x** matrix.( Type its name in the console, you will see. ) Determine the maximum value in the **income level** column of the **freeny.x** matrix. Use only functions shown before page 27.
+
+```{r}
+library(datasets)
+#freeny.x
+
+max(freeny.x[,3])
+
+```

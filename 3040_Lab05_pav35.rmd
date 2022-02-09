@@ -1,0 +1,127 @@
+---
+title: "Lab #5"
+author: "pav35"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: word_document
+---
+
+ 
+ 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, dpi =200, fig.cap = NULL, message=FALSE, warning=FALSE)
+library(stringr)
+library(ggplot2)
+library(openintro) # You need to install this package
+
+
+```
+
+ 
+ 
+Things to complete: 
+
+  a. All examples completed by the TAs
+  b. All of the problems assigned to you
+
+Each problem should :
+
+  a. have made use of only functions listed in lab, or previous labs.
+  b. have each problem on a different page.
+  c. have any computed values displayed either inline or explicitly at the end of a code chunk.
+  d. not be done by brute force or by inspection. These are methods where the source data is inspected, and the solution dataframe/vector is constructed by explicitly typing in the correct data values. Methods should be scalable. They should work for a dataset with 10 values or 10,000,000 values.
+    
+Thing to turn in:
+
+  a. One PDF (produced from a knitted word document.)
+  
+**Instructions:**
+
+  1. Recreate the given graphs. 
+  2. Use either the dataframe indicated in the title or create the dataframe if there is no dataframe given in the title.
+  3. All individual plotted points have integer values. (If it looks like it is close to (2,1), then the plotted point is at (2,1) )
+  4. If the size of a point appears to be different from the default, the size does not need to be matched exactly. Relative size is all that should be maintained.
+  5.The only colors that will be specifically set/specified are: "black", "blue", "orange", "red", "grey50". Any other color is a natural selection of an aesthetic mapping.
+  6. Give each graph a 'more descriptive' title
+  
+  
+
+
+\newpage
+
+
+
+Problem 1: 
+
+```{r }
+# Show your work here
+
+Horizontal = c(1:11)
+Verical = c(1,0,-1,0,1,0,-1,0,1,0,-1)
+
+p1_dataframe = data.frame( Horizontal, Verical)
+
+ggplot(data = p1_dataframe) + geom_line(mapping = aes(x = Horizontal, y = Verical)) + geom_point(x =Horizontal, y=Verical, size = 10, color = "orange") + labs(title = "Problem 1 Graph")
+
+
+
+```
+
+
+
+
+\newpage
+
+Problem 2: 
+
+```{r }
+# Show your work here
+
+
+Horizontal = c(1:11)
+Vertical = c(1,0,-1,0,1,0,-1,0,1,0,-1)
+
+p2_dataframe = data.frame( Horizontal, Vertical)
+
+ggplot(data = p2_dataframe) + 
+  
+  geom_point(mapping = aes(x = Horizontal, y =Vertical),color = "red", size = 10) + 
+  
+  geom_line(mapping = aes(x = Horizontal, y =Vertical)) + labs(title = "Problem 2 Graph")
+
+
+```
+
+
+
+
+
+\newpage
+
+Problem 3: 
+
+```{r }
+# Show your work here
+
+ggplot(data = cle_sac, mapping = aes(x = age, y = personal_income)) + geom_point(mapping = aes(color = state)) + 
+  scale_fill_manual(values =c("red", "blue")) +
+    geom_smooth(color = "black")
+
+```
+
+
+
+
+\newpage
+
+Problem 4: 
+
+```{r }
+# Show your work here
+
+
+ggplot(data = teacher) + geom_boxplot(mapping = aes(x = degree, y = years, fill = degree))+ scale_fill_manual(values =c("orange", "blue"))  + xlab("degree") + ylab("Years Teaching") + labs(title = "California and Ohio Teacher Data")
+
+```
+
+
