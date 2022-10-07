@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @pedrov718
 - 👀 I’m interested in data science.  
-- 🌱 I’m currently learning machine learning and data anylasis. 
+- 🌱 I’m currently learning machine learning and data science. 
 - 💞️ I’m looking to collaborate on large data projects. 
 - 📫 How to reach me via email pedrov718@gmail.com
 
